@@ -2,7 +2,7 @@
   "name": "pear-ecommerce-poc",
   "version": "1.0.0",
   "description": "Ecommerce Milestone project",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "start": "nodemon app.js"
   },
