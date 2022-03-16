@@ -1,0 +1,25 @@
+{
+  "name": "pear-ecommerce-poc",
+  "version": "1.0.0",
+  "description": "Ecommerce Milestone project",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheYogiCoding/pear-ecommerce-poc.git"
+  },
+  "author": "Ashleen Rath",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheYogiCoding/pear-ecommerce-poc/issues"
+  },
+  "homepage": "https://github.com/TheYogiCoding/pear-ecommerce-poc#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
