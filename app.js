@@ -10,6 +10,9 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+//Serve static css files
+app.use(express.static("public"));
+
 app.use(authRoutes);
 
 app.listen(3000);

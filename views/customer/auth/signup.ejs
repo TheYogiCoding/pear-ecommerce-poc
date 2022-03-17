@@ -1,4 +1,6 @@
 <%- include('../includes/head', { pageTitle: 'SignUp'}) %> 
+  <link rel="stylesheet" href="/styles/auth.css">
+  <link rel="stylesheet" href="/styles/form.css">
 </head>
 <body>
 <%- include('../includes/header') %>
@@ -6,48 +8,48 @@
   <h1>Sign Up</h1>
   <form action="" method="">
 
-    <div>
+    <p>
       <label for="email-address">E-Mail Address</label>
       <input type="email" name="email-address" id="email-address" required>  
-    </div>
+    </p>
 
-    <div>
+    <p>
       <label for="confirm-email-address">Confirm E-Mail Address</label>
       <input type="email" name="confirm-email-address" id="confirm-email-address" required>  
-    </div>
+    </p>
 
-    <div>
+    <p>
       <label for="password">Password</label>
       <input type="password" name="password" id="password" required minlength="8">
-    </div>
+    </p>
 
-    <div>
+    <p>
       <label for="confirm-password">Confirm Password</label>
       <input type="confirm-password" name="confirm-password" id="confirm-password" required minlength="8">
-    </div>
+    </p>
 
     <hr>
     <!--Personal Information on Sign Up-->
 
-    <div>
+    <p>
       <label for="full-name">Full Name</label>
       <input type="text" name="full-name" id="full-name" required minlength="2">
-    </div>
+    </p>
 
-    <div>
+    <p>
       <label for="street-name">Street Address</label>
       <input type="text" name="street-name" id="street-name" required minlength="2">
-    </div>
+    </p>
 
-    <div>
+    <p>
       <label for="eircode">Eircode</label>
       <input type="text" name="eircode" id="eircode" required maxlength="7">
-    </div>
+    </p>
 
-    <div>
+    <p>
       <label for="county">County</label>
       <input type="text" name="county" id="county" required>
-    </div>
+    </p>
 
     <button class="btn">Sign Up</button>
     <p id="login-btn"><a href="/login">Login</a></p>

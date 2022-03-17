@@ -1,0 +1,46 @@
+html {
+  font-family: "Manrope", sans-serif;
+
+  --color-silver-50: rgb(36, 104, 104);
+  --color-silver-100: rgb(52, 118, 118);
+  --color-silver-300: rgb(71, 144, 144);
+  --color-silver-400: rgb(85, 157, 157);
+  --color-silver-500: rgb(123, 186, 186);
+  --color-silver-600: rgb(154, 208, 208);
+  --color-silver-700: rgb(198, 237, 237);
+
+  --color-primary-50: rgb(200, 253, 234);
+  --color-primary-100: rgb(149, 234, 221);
+  --color-primary-200: rgb(130, 239, 201);
+  --color-primary-400: rgb(41, 223, 159);
+  --color-primary-500: rgb(17, 196, 133);
+  --color-primary-700: rgb(16, 167, 114);
+  --color-primary-200-contrast: rgb(205, 97, 162);
+  --color-primary-500-contrast: white;
+
+  --color-error-100: rgb(251, 161, 167);
+  --color-error-500: rgb(199, 15, 15);
+
+  --color-primary-500-bg: rgb(1, 57, 60);
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+
+  --border-radius-small: 4px;
+  --border-radius-medium: 6px;
+
+  --shadow-medium: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+  background-color: var(--color-silver-100);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
