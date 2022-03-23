@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body></body>
-</html>
+<%- include('../includes/head', { pageTitle: 'SignUp'}) %> 
+  <link rel="stylesheet" href="/styles/auth.css">
+  <link rel="stylesheet" href="/styles/forms.css">
+</head>
+<body>
+<%- include('../includes/header') %>
+<main>
+  <h1>Login</h1>
+  <form action="/signup" method="POST">
+
+    <p>
+      <label for="email-address">E-Mail Address</label>
+      <input type="email" name="email-address" id="email-address" required>  
+    </p>
+
+    <p>
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" required minlength="8">
+    </p>
+
+    <button class="btn">Login</button>
+    <p id="switch-form"><a href="/signUp">Create New Account</a></p>
+  </form>
+</main>
+
+<%-include('../includes/footer') %>
