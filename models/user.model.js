@@ -1,6 +1,7 @@
 const db = require("../data/database");
 
 const bcrypt = require("bcryptjs");
+const e = require("express");
 
 class User {
   constructor(email, password, fullname, street, eircode, county) {
@@ -21,6 +22,16 @@ class User {
     //Returns a promise - yields it so no need to async and await
     console.log(this.email);
     return db.getDb().collection("users").findOne({ email: this.email });
+  }
+
+  async existsAlready() {
+    const existingUser = await this.getUserWithSameEmail();
+
+    if (existingUser) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   hasCorrectPassword(hashedPassword) {

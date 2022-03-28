@@ -1,12 +1,31 @@
 const User = require("../models/user.model");
 const authUtil = require("../util/authentication");
+const validation = require("../util/validation");
 
 function getSignUp(req, res) {
   console.log("Sign Up Logic");
   res.render("customer/auth/signup");
 }
 
-async function signUp(req, res) {
+async function signUp(req, res, next) {
+  if (
+    !validation.userDetailsAreValid(
+      req.body.emailAddress,
+      req.body.password,
+      req.body.fullName,
+      req.body.streetName,
+      req.body.eircode,
+      req.body.county
+    ) ||
+    !validation.emailIsConfirmed(
+      req.body.emailAddress,
+      req.body.confirmEmailAddress
+    )
+  ) {
+    res.redirect("/signup");
+    return;
+  }
+
   const user = new User(
     req.body.emailAddress,
     req.body.password,
@@ -16,7 +35,21 @@ async function signUp(req, res) {
     req.body.county
   );
 
-  await user.signUp();
+  //Express middleware error handling wont handle async operations
+  try {
+    //Cannot have a user with the same email twice
+    const existsAlready = await user.existsAlready();
+
+    if (existsAlready) {
+      res.redirect("/signup");
+      return;
+    }
+
+    await user.signUp();
+  } catch (error) {
+    next(error);
+    return;
+  }
 
   res.redirect("/login");
 }
@@ -32,9 +65,15 @@ async function login(req, res) {
     (email = req.body.email),
     (password = req.body.password)
   );
-  console.log(user.email);
-  console.log(user.password);
-  const existingUser = await user.getUserWithSameEmail();
+
+  let existingUser;
+
+  try {
+    existingUser = await user.getUserWithSameEmail();
+  } catch (error) {
+    next(error);
+    return;
+  }
 
   if (!existingUser) {
     res.redirect("/login");
