@@ -14,6 +14,20 @@ class User {
       });
   }
 
+  getUserWithSameEmail() {
+    //If find a user in the DB that has the exact email address
+    //we have a match
+
+    //Returns a promise - yields it so no need to async and await
+    console.log(this.email);
+    return db.getDb().collection("users").findOne({ email: this.email });
+  }
+
+  hasCorrectPassword(hashedPassword) {
+    //Checks for the unhashed password
+    return bcrypt.compare(this.password, hashedPassword);
+  }
+
   async signUp() {
     const hashedPassword = await bcrypt.hash(this.password, 12);
 
