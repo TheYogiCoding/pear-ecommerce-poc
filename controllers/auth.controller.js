@@ -1,6 +1,7 @@
 const User = require("../models/user.model");
 const authUtil = require("../util/authentication");
 const validation = require("../util/validation");
+const sessionFlash = require("../util/session-flash");
 
 function getSignUp(req, res) {
   console.log("Sign Up Logic");
@@ -8,6 +9,15 @@ function getSignUp(req, res) {
 }
 
 async function signUp(req, res, next) {
+  const enteredData = {
+    emailAddress: req.body.emailAddress,
+    password: req.body.password,
+    fullName: req.body.fullName,
+    streetName: req.body.streetName,
+    eircode: req.body.eircode,
+    county: req.body.county,
+  };
+
   if (
     !validation.userDetailsAreValid(
       req.body.emailAddress,
@@ -22,7 +32,17 @@ async function signUp(req, res, next) {
       req.body.confirmEmailAddress
     )
   ) {
-    res.redirect("/signup");
+    sessionFlash.flashDataToSession(
+      req,
+      {
+        errorMessage:
+          "Please check your input. Password must be at least 5 characters long",
+        ...enteredData,
+      },
+      function () {
+        res.redirect("/signup");
+      }
+    );
     return;
   }
 
@@ -41,7 +61,16 @@ async function signUp(req, res, next) {
     const existsAlready = await user.existsAlready();
 
     if (existsAlready) {
-      res.redirect("/signup");
+      sessionFlash.flashDataToSession(
+        req,
+        {
+          errorMessage: "User exists already! Try logging in instead!",
+          ...enteredData,
+        },
+        function () {
+          res.redirect("/signup");
+        }
+      );
       return;
     }
 
@@ -76,9 +105,18 @@ async function login(req, res) {
   }
 
   if (!existingUser) {
-    res.redirect("/login");
-    //Visitor entered incorrect details
-    console.log("No user");
+    sessionFlash.flashDataToSession(
+      req,
+      {
+        errorMessage: "Invalid credentials - please try again",
+        ...enteredData,
+        email: user.email,
+        password: user.password,
+      },
+      function () {
+        res.redirect("/login");
+      }
+    );
     return;
   }
 
@@ -86,9 +124,17 @@ async function login(req, res) {
     existingUser.password
   );
 
+  const sessionData = {
+    errorMessage: "Invalid credentials - please try again",
+    ...enteredData,
+    email: user.email,
+    password: user.password,
+  };
+
   if (!checkPasswordCorrect) {
-    res.redirect("/login");
-    console.log("bad password");
+    sessionFlash.flashDataToSession(req, sessionData, function () {
+      res.redirect("/login");
+    });
     return;
   }
 
