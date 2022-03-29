@@ -9,6 +9,7 @@ const expressSession = require("express-session");
 const authRoutes = require("./routes/auth.routes");
 const productsRoutes = require("./routes/products.routes");
 const sharedRoutes = require("./routes/shared.routes");
+const adminRoutes = require("./routes/admin.routes");
 
 const db = require("./data/database");
 
@@ -39,6 +40,7 @@ app.use(errorHandler);
 app.use(authRoutes);
 app.use(sharedRoutes);
 app.use(productsRoutes);
+app.use("/admin", adminRoutes);
 
 db.connectToDatabase()
   .then(function () {

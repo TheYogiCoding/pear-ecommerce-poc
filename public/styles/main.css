@@ -101,3 +101,14 @@ ol {
 .alert p {
   margin: var(--space-2);
 }
+
+.btn-alt {
+  background-color: transparent;
+  color: var(--color-primary-500);
+}
+
+.btn-alt:hover,
+.btn-alt:active {
+  background-color: var(--color-primary-500-bg);
+  color: white;
+}
