@@ -8,6 +8,8 @@ function checkAuthStatus(req, res, next) {
 
   res.locals.uid = uid;
   res.locals.isAuth = true;
+  //Undefined for non admins - true for admins
+  res.locals.isAdmin = req.session.isAdmin;
 
   next();
 }

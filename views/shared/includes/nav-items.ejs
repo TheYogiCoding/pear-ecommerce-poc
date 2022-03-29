@@ -1,0 +1,32 @@
+<ul class="nav-items">
+  <!--Admins should not see shop or cart-->
+  <% if (!locals.isAdmin) { %>
+  <li><a href="/">Shop</a></li>
+  <li><a href="/cart">Cart</a></li>
+  <% } %>
+  <!--Admins should not see Orders but regular logged in users do-->
+  <% if (locals.isAuth && !locals.isAdmin) { %>
+  <li><a href="/orders">Orders</a></li>
+  <% } %>
+  <!--Admins can only see products and order management-->
+  <% if (locals.isAdmin) { %>
+  <li><a href="/admin/products">Manage Products</a></li>
+  <li><a href="/admin/orders">Manage Orders</a></li>
+  <% } %>
+
+  <!--Signup and Login pages-->
+  <% if (!locals.isAuth) { %>
+  <li><a href="/signup">Signup</a></li>
+  <li><a href="/login">Login</a></li>
+  <% } %>
+
+  <!--Authenticated Users of kind must be able to logout of session-->
+  <% if (locals.isAuth) { %>
+  <li>
+    <form action="/logout" method="POST">
+      <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>" />
+      <button>Logout</button>
+    </form>
+  </li>
+  <% } %>
+</ul>
