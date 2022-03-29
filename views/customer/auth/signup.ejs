@@ -6,21 +6,32 @@
 <%- include('../../shared/includes/header') %>
 <main>
   <h1>Sign Up</h1>
+  <% if(inputData.errorMessage) { %>
+    <section class="alert">
+      <h2>Invalid Input</h2>
+      <p><%= inputData.errorMessage %></p>
+    </section>
+  <% } %>
   <form action="/signup" method="POST">
     <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
     <p>
       <label for="emailAddress">E-Mail Address</label>
-      <input type="email" name="emailAddress" id="emailAddress" required>  
+      <input type="email" name="emailAddress" id="emailAddress" value="<%= inputData.emailAddress %>">  
     </p>
 
     <p>
       <label for="confirmEmailAddress">Confirm E-Mail Address</label>
-      <input type="email" name="confirmEmailAddress" id="confirmEmailAddress" required>  
+      <input type="email" name="confirmEmailAddress" 
+      id="confirmEmailAddress" 
+      value="<%= inputData.confirmEmailAddress %>">  
     </p>
 
     <p>
       <label for="password">Password</label>
-      <input type="password" name="password" id="password" required minlength="8">
+      <input type="password" 
+      name="password" 
+      id="password"
+      value="<%= inputData.password %>">
     </p>
 
     <hr>
@@ -28,22 +39,33 @@
 
     <p>
       <label for="fullName">Full Name</label>
-      <input type="text" name="fullName" id="fullName" required minlength="2">
+      <input type="text" 
+      name="fullName" 
+      id="fullName" 
+      value="<%= inputData.fullName %>">
     </p>
 
     <p>
       <label for="streetName">Street Address</label>
-      <input type="text" name="streetName" id="streetName" required minlength="2">
+      <input type="text" 
+      name="streetName"
+      id="streetName" 
+      value="<%= inputData.streetName %>">
     </p>
 
     <p>
       <label for="eircode">Eircode</label>
-      <input type="text" name="eircode" id="eircode" required maxlength="7">
+      <input type="text" 
+      name="eircode" 
+      id="eircode" 
+      value="<%= inputData.eircode %>">
     </p>
 
     <p>
       <label for="county">County</label>
-      <input type="text" name="county" id="county" required>
+      <input type="text" name="county" 
+      value="<%= inputData.county %>"
+      id="county">
     </p>
 
     <button class="btn">Sign Up</button>

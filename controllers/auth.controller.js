@@ -4,13 +4,31 @@ const validation = require("../util/validation");
 const sessionFlash = require("../util/session-flash");
 
 function getSignUp(req, res) {
-  console.log("Sign Up Logic");
-  res.render("customer/auth/signup");
+  let sessionData = sessionFlash.getSessionData(req);
+
+  if (!sessionData) {
+    //If session fails, have a default session object
+    //with no values preset - blank/null
+    sessionData = {
+      emailAddress: "",
+      password: "",
+      confirmEmailAddress: "",
+      fullName: "",
+      streetName: "",
+      eircode: "",
+      county: "",
+    };
+  }
+
+  //Send the session data to the form if need to flash data to user
+  //(Enter their details again)
+  res.render("customer/auth/signup", { inputData: sessionData });
 }
 
 async function signUp(req, res, next) {
   const enteredData = {
     emailAddress: req.body.emailAddress,
+    confirmEmailAddress: req.body.confirmEmailAddress,
     password: req.body.password,
     fullName: req.body.fullName,
     streetName: req.body.streetName,
@@ -84,16 +102,30 @@ async function signUp(req, res, next) {
 }
 
 function getLogin(req, res) {
-  console.log("Login Logic");
-  res.render("customer/auth/login");
+  let sessionData = sessionFlash.getSessionData(req);
+
+  if (!sessionData) {
+    //If session fails, have a default session object
+    //with no values preset - blank/null
+    sessionData = {
+      emailAddress: "",
+      password: "",
+    };
+  }
+
+  res.render("customer/auth/login", { inputData: sessionData });
 }
 
 async function login(req, res) {
-  console.log(req.body);
   const user = new User(
     (email = req.body.email),
     (password = req.body.password)
   );
+
+  const enteredData = {
+    emailAddress: req.body.emailAddress,
+    password: req.body.password,
+  };
 
   let existingUser;
 
