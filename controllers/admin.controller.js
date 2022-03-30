@@ -7,14 +7,12 @@ function getNewProduct(req, res) {
 }
 
 function createNewProduct(req, res) {
-  console.log(req);
   console.log(req.body);
-  console.log(req.file);
   res.redirect("/admin/products");
 }
 
 module.exports = {
-  getNewProduct: getNewProduct,
   getProducts: getProducts,
+  getNewProduct: getNewProduct,
   createNewProduct: createNewProduct,
 };
