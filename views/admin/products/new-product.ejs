@@ -5,7 +5,8 @@
 <%- include('../../shared/includes/header') %> 
     <main>
         <h1>Product Administration</h1>
-        <form action="" method="POST">
+        <form action="/admin/products?_csrf=<%= locals.csrfToken %>" method="POST" enctype="multipart/form-data">
+
             <p>
                 <label for="title">Title</label>
                 <input type="text" id="title" required>
@@ -28,7 +29,7 @@
             </p>
             <p>
                 <button class="btn btn-alt" type="reset">Reset</button>
-                <button class="btn">Save</button>
+                <button type="submit" class="btn">Save</button>
             </p>
         </form>
     </main>
