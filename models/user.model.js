@@ -5,14 +5,14 @@ const e = require("express");
 
 class User {
   constructor(email, password, fullname, street, eircode, county) {
-    (this.email = email),
-      (this.password = password),
-      (this.fullname = fullname),
-      (this.address = {
-        street: street,
-        eircode: eircode,
-        county: county,
-      });
+    this.email = email;
+    this.password = password;
+    this.fullname = fullname;
+    this.address = {
+      street: street,
+      eircode: eircode,
+      county: county,
+    };
   }
 
   getUserWithSameEmail() {
