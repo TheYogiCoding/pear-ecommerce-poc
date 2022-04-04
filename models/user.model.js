@@ -20,7 +20,6 @@ class User {
     //we have a match
 
     //Returns a promise - yields it so no need to async and await
-    console.log(this.email);
     return db.getDb().collection("users").findOne({ email: this.email });
   }
 
