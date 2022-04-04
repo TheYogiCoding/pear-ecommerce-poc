@@ -1,12 +1,19 @@
 <%- include('../../shared/includes/head', { pageTitle: 'All Products'}) %> 
   <link rel="stylesheet" href="/styles/auth.css">
   <link rel="stylesheet" href="/styles/forms.css">
+  <link rel="stylesheet" href="/styles/products.css">
 </head>
 <body>
 <%- include('../../shared/includes/header') %>
 <main>
   <h1>All Products</h1>
-  <p>A list of products</p>
+  <ul id="products-grid">
+    <% for (const productItem of products) {%>
+    <li>
+      <%-include('../../shared/includes/product-item', {product: productItem}) %>
+    </li>
+    <% } %>
+  </ul>
 </main>
 
 <%-include('../../shared/includes/footer') %>
