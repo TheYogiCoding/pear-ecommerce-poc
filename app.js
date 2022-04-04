@@ -14,6 +14,7 @@ const adminRoutes = require("./routes/admin.routes");
 const db = require("./data/database");
 
 const { addCsrfToken } = require("./middlewares/csrf-token");
+const protectRoutes = require("./middlewares/protect-routes");
 const errorHandler = require("./middlewares/error-handler");
 const checkAuthStatus = require("./middlewares/check-auth");
 
@@ -40,6 +41,8 @@ app.use(checkAuthStatus);
 app.use(authRoutes);
 app.use(sharedRoutes);
 app.use(productsRoutes);
+
+app.use(protectRoutes);
 app.use("/admin", adminRoutes);
 
 app.use(errorHandler);
