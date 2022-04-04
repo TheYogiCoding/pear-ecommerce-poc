@@ -7,7 +7,14 @@
       <a class="btn btn-alt" href="/admin/products/<%=product.id %>"
         >View/Edit</a
       >
-      <button class="btn btn-alt">Delete</button>
+      <!--Accessible in the product mgmt class through ajax calls-->
+      <button
+        class="btn btn-alt"
+        data-productid="<%= product.id %>"
+        data-csrf="<%= locals.csrfToken %>"
+      >
+        Delete
+      </button>
     </div>
   </div>
 </article>

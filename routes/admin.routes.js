@@ -27,4 +27,6 @@ router.post(
   adminController.updateProduct
 );
 
+router.delete("/products/:id", adminController.deleteProduct);
+
 module.exports = router;
