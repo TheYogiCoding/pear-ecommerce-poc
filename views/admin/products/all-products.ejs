@@ -11,7 +11,13 @@
             <p><a href="/admin/products/new" class="btn">Add Product</a></p>
         </section>
         <section>
-          <p>A list of products</p>
+          <ul>
+            <% for (const productItem of products) {%>
+            <li>
+              <%-include('includes/product-item', {product: productItem}) %>
+            </li>
+            <% } %>
+          </ul>
         </section>
         <section></section>
     </main>

@@ -26,6 +26,7 @@ app.set("views", path.join(__dirname, "views"));
 
 //Serve static css files
 app.use(express.static("public"));
+app.use("/products/assets", express.static("product-data"));
 app.use(express.urlencoded({ extended: false }));
 
 const sessionConfig = createSessionConfig();
