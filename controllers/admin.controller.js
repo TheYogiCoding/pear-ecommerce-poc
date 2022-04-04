@@ -6,7 +6,6 @@ async function getProducts(req, res, next) {
     res.render("admin/products/all-products", { products: products });
   } catch (error) {
     next(error);
-    return;
   }
 }
 
@@ -24,7 +23,8 @@ async function createNewProduct(req, res, next) {
     await product.save();
   } catch (error) {
     console.log(error);
-    return next(error);
+    next(error);
+    return;
   }
 
   res.redirect("/admin/products");

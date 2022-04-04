@@ -36,12 +36,13 @@ app.use(csrf());
 
 app.use(addCsrfToken);
 app.use(checkAuthStatus);
-app.use(errorHandler);
 
 app.use(authRoutes);
 app.use(sharedRoutes);
 app.use(productsRoutes);
 app.use("/admin", adminRoutes);
+
+app.use(errorHandler);
 
 db.connectToDatabase()
   .then(function () {
