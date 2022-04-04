@@ -170,9 +170,6 @@ async function login(req, res) {
     return;
   }
 
-  console.log("Logged in successfully");
-  console.log(existingUser);
-
   authUtil.createUserSession(req, existingUser, function () {
     //Once the session was saved - so the user is not redirected to the next page
     //before the session is created
