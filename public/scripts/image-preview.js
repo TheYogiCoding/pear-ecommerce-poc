@@ -14,7 +14,7 @@ function updateImagePreview() {
   const pickedFile = files[0];
 
   imagePreviewElement.src = URL.createObjectURL(pickedFile);
-  imagePickerElement.style.display = "block";
+  imagePreviewElement.style.display = "block";
 }
 
 imagePickerElement.addEventListener("change", updateImagePreview);
