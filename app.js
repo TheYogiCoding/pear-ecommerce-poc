@@ -10,6 +10,7 @@ const authRoutes = require("./routes/auth.routes");
 const productsRoutes = require("./routes/products.routes");
 const sharedRoutes = require("./routes/shared.routes");
 const adminRoutes = require("./routes/admin.routes");
+const cartRoutes = require("./routes/cart.routes");
 
 const db = require("./data/database");
 
@@ -18,6 +19,7 @@ const protectRoutes = require("./middlewares/protect-routes");
 const errorHandler = require("./middlewares/error-handler");
 const checkAuthStatus = require("./middlewares/check-auth");
 const cartMiddleware = require("./middlewares/cart");
+const exp = require("constants");
 
 const app = express();
 
@@ -30,6 +32,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static("public"));
 app.use("/products/assets", express.static("product-data"));
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 const sessionConfig = createSessionConfig();
 
@@ -43,9 +46,10 @@ app.use(checkAuthStatus);
 app.use(authRoutes);
 app.use(sharedRoutes);
 app.use(productsRoutes);
-
+app.use("/cart", cartRoutes); // /cart/items
 app.use(protectRoutes);
-app.use("/admin", adminRoutes);
+//Protect routes to avoid unauthenticated users entering
+app.use("/admin", adminRoutes); // /admin/products
 
 app.use(errorHandler);
 

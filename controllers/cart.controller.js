@@ -1,9 +1,13 @@
 const Product = require("../models/product.model");
 
-async function addCartItem(req, res) {
+function getCart(req, res) {
+  res.render("customer/cart/cart");
+}
+
+async function addCartItem(req, res, next) {
   let product;
   try {
-    product = await Product.findByID(req.body.productID);
+    product = await Product.findByID(req.body.productId);
   } catch (error) {
     next(error);
     return;
@@ -14,13 +18,13 @@ async function addCartItem(req, res) {
   cart.addItem(product);
   req.session.cart = cart;
 
-  //ajax request
-  res.statu(201).json({
-    message: "Cart updated",
+  res.status(201).json({
+    message: "Cart updated!",
     newTotalItems: cart.totalQuantity,
   });
 }
 
 module.exports = {
   addCartItem: addCartItem,
+  getCart: getCart,
 };
