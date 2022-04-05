@@ -2,7 +2,8 @@
   <!--Admins should not see shop or cart-->
   <% if (!locals.isAdmin) { %>
   <li><a href="/">Shop</a></li>
-  <li><a href="/cart">Cart</a></li>
+  <li><a href="/cart">Cart</a>
+    <span class="badge"><%= locals.cart.totalQuantity %></span></li>
   <% } %>
   <!--Admins should not see Orders but regular logged in users do-->
   <% if (locals.isAuth && !locals.isAdmin) { %>
