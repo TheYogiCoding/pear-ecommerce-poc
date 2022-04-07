@@ -1,5 +1,7 @@
 const db = require("../data/database");
 
+const monogdb = require("mongodb");
+
 const bcrypt = require("bcryptjs");
 const e = require("express");
 
@@ -13,6 +15,15 @@ class User {
       eircode: eircode,
       county: county,
     };
+  }
+
+  static async findByID(userId) {
+    const uid = new monogdb.ObjectId(userId);
+
+    return db
+      .getDb()
+      .collection("users")
+      .findOne({ _id: uid }, { projection: { password: 0 } });
   }
 
   getUserWithSameEmail() {
