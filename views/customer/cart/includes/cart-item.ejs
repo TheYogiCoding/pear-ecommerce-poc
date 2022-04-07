@@ -8,14 +8,12 @@
       >
     </p>
   </div>
-  <div class="cart-item-mgmt">
-    <input
-      type="number"
-      name="totalQuantity"
-      id="totalQuantity"
-      value="<%= item.quantity %>"
-      required
-    />
+  <form
+    class="cart-item-mgmt"
+    data-productid="<%= item.product.id %>"
+    data-csrf="<%= locals.csrfToken %>"
+  >
+    <input type="number" value="<%= item.quantity %>" required />
     <button class="btn btn-alt">Update</button>
-  </div>
+  </form>
 </article>

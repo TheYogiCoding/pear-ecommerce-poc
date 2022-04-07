@@ -32,8 +32,6 @@ function updateCartItem(req, res) {
     req.body.quantity
   );
 
-  cart.updateCartItem(req.body.productId, req.body.quantity);
-
   req.session.cart = cart;
 
   res.json({

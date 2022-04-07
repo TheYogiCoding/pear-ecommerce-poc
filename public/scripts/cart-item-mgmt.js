@@ -1,6 +1,4 @@
-const cartItemUpdateFormElements = document.querySelectorAll(
-  ".cart-item-management"
-);
+const cartItemUpdateFormElements = document.querySelectorAll(".cart-item-mgmt");
 const cartTotalPriceElement = document.getElementById("cart-total-price");
 const cartBadge = document.querySelector(".nav-items .badge");
 
