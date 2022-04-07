@@ -11,6 +11,7 @@ const productsRoutes = require("./routes/products.routes");
 const sharedRoutes = require("./routes/shared.routes");
 const adminRoutes = require("./routes/admin.routes");
 const cartRoutes = require("./routes/cart.routes");
+const ordersRoutes = require("./routes/orders.routes");
 
 const db = require("./data/database");
 
@@ -50,6 +51,7 @@ app.use("/cart", cartRoutes); // /cart/items
 app.use(protectRoutes);
 //Protect routes to avoid unauthenticated users entering
 app.use("/admin", adminRoutes); // /admin/products
+app.use("/orders", ordersRoutes);
 
 app.use(errorHandler);
 
