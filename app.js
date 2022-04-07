@@ -20,7 +20,7 @@ const protectRoutes = require("./middlewares/protect-routes");
 const errorHandler = require("./middlewares/error-handler");
 const checkAuthStatus = require("./middlewares/check-auth");
 const cartMiddleware = require("./middlewares/cart");
-const exp = require("constants");
+const updateCartPrices = require("./middlewares/update-cart-prices");
 
 const app = express();
 
