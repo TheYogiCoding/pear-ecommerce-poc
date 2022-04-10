@@ -8,7 +8,7 @@
       <% if (locals.isAdmin) { %>
         <address>
           <p><a href="mailto:<%= order.userData.email %>"><%= order.userData.name %></a></p>
-          <p><%= order.userData.address.street %> (<%= order.userData.address.postalCode %> <%= order.userData.address.city %>)</p>
+          <p><%= order.userData.address.street %> (<%= order.userData.address.eircode %> <%= order.userData.address.county %>)</p>
         </address>
       <% } %>
       <ul>
